@@ -12,18 +12,18 @@ class NormaForm (ModelForm):
         # for form in self.visible_fields():
         #     form.field.widget.attrs['class'] = 'form-control'
         #     form.field.widget.attrs['autocomplete'] = 'off'
-        self.fields['name'].widget.attrs['autofocus'] = True    
+        self.fields['nor'].widget.attrs['autofocus'] = True    
         
     class Meta:
         model = Norma
         fields = '__all__'
         widgets = {
-            'name': TextInput(
+            'nor': TextInput(
                 attrs={
                     'placeholder': 'Ingrese un nombre',
                 }
             ),
-            'desc': Textarea(
+            'des_nor': Textarea(
                 attrs={
                     'placeholder': 'Ingrese un nombre',
                     'rows': 3,
@@ -44,12 +44,12 @@ class NormaForm (ModelForm):
             data['error'] = str(e)
         return data
 
-    def clean(self):
-        cleaned = super().clean()
-        if len(cleaned['name']) <= 50:
-            raise forms.ValidationError('Validacion xxx')
-            #self.add_error('name', 'Le faltan caracteres')
-        return cleaned
+    # def clean(self):
+    #     cleaned = super().clean()
+    #     # if len(cleaned['nor']) <= 50:
+    #     #     raise forms.ValidationError('Validacion xxx')
+    #         #self.add_error('name', 'Le faltan caracteres')
+    #     return cleaned
     
 class PuntoForm (ModelForm):
     
@@ -58,18 +58,18 @@ class PuntoForm (ModelForm):
         # for form in self.visible_fields():
         #     form.field.widget.attrs['class'] = 'form-control'
         #     form.field.widget.attrs['autocomplete'] = 'off'
-        self.fields['name'].widget.attrs['autofocus'] = True    
+        self.fields['nomb_pun'].widget.attrs['autofocus'] = True    
         
     class Meta:
         model = Punto
         fields = '__all__'
         widgets = {
-            'name': TextInput(
+            'nomb_pun': TextInput(
                 attrs={
                     'placeholder': 'Ingrese un nombre',
                 }
             ),
-            'desc': Textarea(
+            'nomb_pun': Textarea(
                 attrs={
                     'placeholder': 'Ingrese un nombre',
                     'rows': 3,
@@ -92,7 +92,7 @@ class PuntoForm (ModelForm):
 
     def clean(self):
         cleaned = super().clean()
-        if len(cleaned['name']) <= 50:
+        if len(cleaned['nomb_pun']) <= 50:
             raise forms.ValidationError('Validacion xxx')
             #self.add_error('name', 'Le faltan caracteres')
         return cleaned

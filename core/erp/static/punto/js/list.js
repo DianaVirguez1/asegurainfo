@@ -16,8 +16,8 @@ $(function () {
             {"data": "id_pun_pk"},
             {"data": "nomb_pun"},
             {"data": "num_pun"},
-            {"data": "norma"},
-            {"data": "norma"},
+            {"data": "norma.nor"},
+            {"data": "id_pun_pk"},
         ],
         columnDefs: [
             {
@@ -25,8 +25,8 @@ $(function () {
                 class: 'text-center',
                 orderable: false,
                 render: function (data, type, row) {
-                    var buttons = '<a href="/erp/category/update/' + row.id + '/" class="btn btn-warning btn-xs btn-flat"><i class="fas fa-edit"></i></a> ';
-                    buttons += '<a href="/erp/category/delete/' + row.id + '/" type="button" class="btn btn-danger btn-xs btn-flat"><i class="fas fa-trash-alt"></i></a>';
+                    var buttons = '<a href="/erp/punto/update/' + row.id_pun_pk + '/" class="btn btn-warning btn-xs btn-flat"><i class="fas fa-edit"></i></a> ';
+                    buttons += '<a href="/erp/punto/delete/' + row.id_pun_pk + '/" type="button" class="btn btn-danger btn-xs btn-flat"><i class="fas fa-trash-alt"></i></a>';
                     return buttons;
                 }
             },

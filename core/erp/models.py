@@ -25,12 +25,13 @@ class Punto (models.Model):
      id_pun_pk = models.AutoField(primary_key= True)
      num_pun = models.IntegerField(verbose_name="Numeral")
      nomb_pun = models.CharField (verbose_name= "Nombre",max_length=60)
-     norma = models.ForeignKey(Norma, on_delete=models.CASCADE)
+     norma = models.ForeignKey(Norma, on_delete=models.CASCADE, verbose_name='Norma')
 
      def __str__(self) -> str:
          return self.nomb_pun
      def toJSON(self):
-        item = model_to_dict(self)     
+        item = model_to_dict(self)  
+        item['norma'] = self.norma.toJSON()   
         return item
 
      class Meta:
