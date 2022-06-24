@@ -1,0 +1,13 @@
+# compiled output
+/dist
+/node_modules
+/static/lib
+/core/erp/migrations
+
+
+*.pyc
+!spec/*.pyc
+
+**/migrations/**
+!**/migrations
+!**/migrations/__init__.py

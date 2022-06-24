@@ -4,16 +4,17 @@ from core.erp.models import Empresa, Requisito
 from core.erp.models import Norma
 from core.erp.models import Punto
 from core.erp.models import Item
-   
+
+
 class NormaForm (ModelForm):
-    
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # for form in self.visible_fields():
         #     form.field.widget.attrs['class'] = 'form-control'
         #     form.field.widget.attrs['autocomplete'] = 'off'
-        self.fields['nor'].widget.attrs['autofocus'] = True    
-        
+        self.fields['nor'].widget.attrs['autofocus'] = True
+
     class Meta:
         model = Norma
         fields = '__all__'
@@ -31,7 +32,7 @@ class NormaForm (ModelForm):
                 }
             ),
         }
-        
+
     def save(self, commit=True):
         data = {}
         form = super()
@@ -50,23 +51,24 @@ class NormaForm (ModelForm):
     #     #     raise forms.ValidationError('Validacion xxx')
     #         #self.add_error('name', 'Le faltan caracteres')
     #     return cleaned
-    
+
+
 class PuntoForm (ModelForm):
-    
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # for form in self.visible_fields():
         #     form.field.widget.attrs['class'] = 'form-control'
         #     form.field.widget.attrs['autocomplete'] = 'off'
-        self.fields['nomb_pun'].widget.attrs['autofocus'] = True    
-        
+        self.fields['nomb_pun'].widget.attrs['autofocus'] = True
+
     class Meta:
         model = Punto
         fields = '__all__'
         widgets = {
-            'nomb_pun': TextInput(
+            'num_pun': TextInput(
                 attrs={
-                    'placeholder': 'Ingrese un nombre',
+                    'placeholder': 'Ingrese un numeral',
                 }
             ),
             'nomb_pun': Textarea(
@@ -76,8 +78,14 @@ class PuntoForm (ModelForm):
                     'cols': 3
                 }
             ),
+            # 'norma': forms.Select(
+            #     attrs={
+            #         'class': 'select2',
+            #         'style': 'width: 100%'
+            #     }
+            # ),
         }
-        
+
     def save(self, commit=True):
         data = {}
         form = super()
@@ -90,22 +98,23 @@ class PuntoForm (ModelForm):
             data['error'] = str(e)
         return data
 
-    def clean(self):
-        cleaned = super().clean()
-        if len(cleaned['nomb_pun']) <= 50:
-            raise forms.ValidationError('Validacion xxx')
-            #self.add_error('name', 'Le faltan caracteres')
-        return cleaned
-    
+    # def clean(self):
+    #     cleaned = super().clean()
+    #     if len(cleaned['nomb_pun']) <= 50:
+    #         raise forms.ValidationError('Validacion xxx')
+    #         #self.add_error('name', 'Le faltan caracteres')
+    #     return cleaned
+
+
 class ItemForm (ModelForm):
-    
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # for form in self.visible_fields():
         #     form.field.widget.attrs['class'] = 'form-control'
         #     form.field.widget.attrs['autocomplete'] = 'off'
-        self.fields['name'].widget.attrs['autofocus'] = True    
-        
+        self.fields['name'].widget.attrs['autofocus'] = True
+
     class Meta:
         model = Item
         fields = '__all__'
@@ -123,7 +132,7 @@ class ItemForm (ModelForm):
                 }
             ),
         }
-        
+
     def save(self, commit=True):
         data = {}
         form = super()
@@ -142,16 +151,17 @@ class ItemForm (ModelForm):
             raise forms.ValidationError('Validacion xxx')
             #self.add_error('name', 'Le faltan caracteres')
         return cleaned
-    
+
+
 class RequisitoForm (ModelForm):
-    
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # for form in self.visible_fields():
         #     form.field.widget.attrs['class'] = 'form-control'
         #     form.field.widget.attrs['autocomplete'] = 'off'
-        self.fields['name'].widget.attrs['autofocus'] = True    
-        
+        self.fields['name'].widget.attrs['autofocus'] = True
+
     class Meta:
         model = Requisito
         fields = '__all__'
@@ -169,7 +179,7 @@ class RequisitoForm (ModelForm):
                 }
             ),
         }
-        
+
     def save(self, commit=True):
         data = {}
         form = super()
@@ -187,17 +197,18 @@ class RequisitoForm (ModelForm):
         if len(cleaned['name']) <= 50:
             raise forms.ValidationError('Validacion xxx')
             #self.add_error('name', 'Le faltan caracteres')
-        return cleaned    
-    
+        return cleaned
+
+
 class EmpresaForm (ModelForm):
-    
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # for form in self.visible_fields():
         #     form.field.widget.attrs['class'] = 'form-control'
         #     form.field.widget.attrs['autocomplete'] = 'off'
-        self.fields['name'].widget.attrs['autofocus'] = True    
-        
+        self.fields['name'].widget.attrs['autofocus'] = True
+
     class Meta:
         model = Empresa
         fields = '__all__'
@@ -215,7 +226,7 @@ class EmpresaForm (ModelForm):
                 }
             ),
         }
-        
+
     def save(self, commit=True):
         data = {}
         form = super()
