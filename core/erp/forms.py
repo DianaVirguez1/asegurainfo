@@ -86,17 +86,17 @@ class PuntoForm (ModelForm):
             # ),
         }
 
-    def save(self, commit=True):
-        data = {}
-        form = super()
-        try:
-            if form.is_valid():
-                form.save()
-            else:
-                data['error'] = form.errors
-        except Exception as e:
-            data['error'] = str(e)
-        return data
+    # def save(self, commit=True):
+    #     data = {}
+    #     form = super()
+    #     try:
+    #         if form.is_valid():
+    #             form.save()
+    #         else:
+    #             data['error'] = form.errors
+    #     except Exception as e:
+    #         data['error'] = str(e)
+    #     return data
 
     # def clean(self):
     #     cleaned = super().clean()
@@ -113,18 +113,18 @@ class ItemForm (ModelForm):
         # for form in self.visible_fields():
         #     form.field.widget.attrs['class'] = 'form-control'
         #     form.field.widget.attrs['autocomplete'] = 'off'
-        self.fields['name'].widget.attrs['autofocus'] = True
+        self.fields['nomb_item'].widget.attrs['autofocus'] = True
 
     class Meta:
         model = Item
         fields = '__all__'
         widgets = {
-            'name': TextInput(
+            'num_item': TextInput(
                 attrs={
                     'placeholder': 'Ingrese un nombre',
                 }
             ),
-            'desc': Textarea(
+            'nomb_item': Textarea(
                 attrs={
                     'placeholder': 'Ingrese un nombre',
                     'rows': 3,
@@ -133,24 +133,24 @@ class ItemForm (ModelForm):
             ),
         }
 
-    def save(self, commit=True):
-        data = {}
-        form = super()
-        try:
-            if form.is_valid():
-                form.save()
-            else:
-                data['error'] = form.errors
-        except Exception as e:
-            data['error'] = str(e)
-        return data
+    # def save(self, commit=True):
+    #     data = {}
+    #     form = super()
+    #     try:
+    #         if form.is_valid():
+    #             form.save()
+    #         else:
+    #             data['error'] = form.errors
+    #     except Exception as e:
+    #         data['error'] = str(e)
+    #     return data
 
-    def clean(self):
-        cleaned = super().clean()
-        if len(cleaned['name']) <= 50:
-            raise forms.ValidationError('Validacion xxx')
-            #self.add_error('name', 'Le faltan caracteres')
-        return cleaned
+    # def clean(self):
+    #     cleaned = super().clean()
+    #     if len(cleaned['name']) <= 50:
+    #         raise forms.ValidationError('Validacion xxx')
+    #         #self.add_error('name', 'Le faltan caracteres')
+    #     return cleaned
 
 
 class RequisitoForm (ModelForm):
@@ -160,18 +160,18 @@ class RequisitoForm (ModelForm):
         # for form in self.visible_fields():
         #     form.field.widget.attrs['class'] = 'form-control'
         #     form.field.widget.attrs['autocomplete'] = 'off'
-        self.fields['name'].widget.attrs['autofocus'] = True
+        self.fields['descrip_req'].widget.attrs['autofocus'] = True
 
     class Meta:
         model = Requisito
         fields = '__all__'
         widgets = {
-            'name': TextInput(
+            'descrip_req': TextInput(
                 attrs={
                     'placeholder': 'Ingrese un nombre',
                 }
             ),
-            'desc': Textarea(
+            'nota_req': Textarea(
                 attrs={
                     'placeholder': 'Ingrese un nombre',
                     'rows': 3,
@@ -180,24 +180,24 @@ class RequisitoForm (ModelForm):
             ),
         }
 
-    def save(self, commit=True):
-        data = {}
-        form = super()
-        try:
-            if form.is_valid():
-                form.save()
-            else:
-                data['error'] = form.errors
-        except Exception as e:
-            data['error'] = str(e)
-        return data
+    # def save(self, commit=True):
+    #     data = {}
+    #     form = super()
+    #     try:
+    #         if form.is_valid():
+    #             form.save()
+    #         else:
+    #             data['error'] = form.errors
+    #     except Exception as e:
+    #         data['error'] = str(e)
+    #     return data
 
-    def clean(self):
-        cleaned = super().clean()
-        if len(cleaned['name']) <= 50:
-            raise forms.ValidationError('Validacion xxx')
-            #self.add_error('name', 'Le faltan caracteres')
-        return cleaned
+    # def clean(self):
+    #     cleaned = super().clean()
+    #     if len(cleaned['name']) <= 50:
+    #         raise forms.ValidationError('Validacion xxx')
+    #         #self.add_error('name', 'Le faltan caracteres')
+    #     return cleaned
 
 
 class EmpresaForm (ModelForm):
@@ -207,18 +207,18 @@ class EmpresaForm (ModelForm):
         # for form in self.visible_fields():
         #     form.field.widget.attrs['class'] = 'form-control'
         #     form.field.widget.attrs['autocomplete'] = 'off'
-        self.fields['name'].widget.attrs['autofocus'] = True
+        self.fields['nomb_empresa'].widget.attrs['autofocus'] = True
 
     class Meta:
         model = Empresa
         fields = '__all__'
         widgets = {
-            'name': TextInput(
+            'nomb_empresa': TextInput(
                 attrs={
                     'placeholder': 'Ingrese un nombre',
                 }
             ),
-            'desc': Textarea(
+            'raz_empresa': Textarea(
                 attrs={
                     'placeholder': 'Ingrese un nombre',
                     'rows': 3,
@@ -227,21 +227,21 @@ class EmpresaForm (ModelForm):
             ),
         }
 
-    def save(self, commit=True):
-        data = {}
-        form = super()
-        try:
-            if form.is_valid():
-                form.save()
-            else:
-                data['error'] = form.errors
-        except Exception as e:
-            data['error'] = str(e)
-        return data
+    # def save(self, commit=True):
+    #     data = {}
+    #     form = super()
+    #     try:
+    #         if form.is_valid():
+    #             form.save()
+    #         else:
+    #             data['error'] = form.errors
+    #     except Exception as e:
+    #         data['error'] = str(e)
+    #     return data
 
-    def clean(self):
-        cleaned = super().clean()
-        if len(cleaned['name']) <= 50:
-            raise forms.ValidationError('Validacion xxx')
-            #self.add_error('name', 'Le faltan caracteres')
-        return cleaned
+    # def clean(self):
+    #     cleaned = super().clean()
+    #     if len(cleaned['name']) <= 50:
+    #         raise forms.ValidationError('Validacion xxx')
+    #         #self.add_error('name', 'Le faltan caracteres')
+    #     return cleaned

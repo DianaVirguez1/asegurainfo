@@ -23,7 +23,7 @@ class Norma (models.Model):
      
 class Punto (models.Model):
      id_pun_pk = models.AutoField(primary_key= True)
-     num_pun = models.IntegerField(verbose_name="Numeral")
+     num_pun = models.CharField ( max_length=5, verbose_name="Numeral")
      nomb_pun = models.CharField (verbose_name= "Nombre",max_length=60)
      norma = models.ForeignKey(Norma, on_delete=models.CASCADE, verbose_name='Norma')
 
@@ -41,7 +41,7 @@ class Punto (models.Model):
      
 class Item (models.Model):
      id_item_pk = models.AutoField(primary_key= True)
-     num_item = models.FloatField(verbose_name="Numeral")
+     num_item = models.CharField ( max_length=5, verbose_name="Numeral")
      nomb_item = models.CharField (max_length=120, verbose_name="Nombre Item")
      punto = models.ForeignKey(Punto, on_delete=models.CASCADE)
 
@@ -50,6 +50,7 @@ class Item (models.Model):
      
      def toJSON(self):
         item = model_to_dict(self)
+        item['punto'] = self.punto.toJSON()   
         return item
 
      class Meta:
@@ -76,6 +77,7 @@ class Requisito (models.Model):
      
      def toJSON(self):
         requisito = model_to_dict(self)
+        requisito['item'] = self.item.toJSON() 
         return requisito
 
      class Meta:

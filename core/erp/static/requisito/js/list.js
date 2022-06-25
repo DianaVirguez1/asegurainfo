@@ -17,8 +17,8 @@ $(function () {
             {"data": "nomb_req"},
             {"data": "descrip_req"},
             {"data": "nota_req"},
-            {"data": "item"},
-            {"data": "item"},
+            {"data": "item.nomb_item"},
+            {"data": "id_req_pk"},
         ],
         columnDefs: [
             {
@@ -26,8 +26,8 @@ $(function () {
                 class: 'text-center',
                 orderable: false,
                 render: function (data, type, row) {
-                    var buttons = '<a href="/erp/category/update/' + row.id + '/" class="btn btn-warning btn-xs btn-flat"><i class="fas fa-edit"></i></a> ';
-                    buttons += '<a href="/erp/category/delete/' + row.id + '/" type="button" class="btn btn-danger btn-xs btn-flat"><i class="fas fa-trash-alt"></i></a>';
+                    var buttons = '<a href="/erp/requisito/update/' + row.id_req_pk + '/" class="btn btn-warning btn-xs btn-flat"><i class="fas fa-edit"></i></a> ';
+                    buttons += '<a href="/erp/requisito/delete/' + row.id_req_pk + '/" type="button" class="btn btn-danger btn-xs btn-flat"><i class="fas fa-trash-alt"></i></a>';
                     return buttons;
                 }
             },

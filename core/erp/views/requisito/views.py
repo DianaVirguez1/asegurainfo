@@ -47,21 +47,21 @@ class RequisitoCreateView(CreateView):
 
     # @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
-        self.object = self.get_object()
+        # self.object = self.get_object()
         return super().dispatch(request, *args, **kwargs)
 
-    def post(self, request, *args, **kwargs):
-        data = {}
-        try:
-            action = request.POST['action']
-            if action == 'add':
-                form = self.get_form()
-                data = form.save()
-            else:
-                data['error'] = 'No ha ingresado a ninguna opción'
-        except Exception as e:
-            data['error'] = str(e)
-        return JsonResponse(data)
+    # def post(self, request, *args, **kwargs):
+    #     data = {}
+    #     try:
+    #         action = request.POST['action']
+    #         if action == 'add':
+    #             form = self.get_form()
+    #             data = form.save()
+    #         else:
+    #             data['error'] = 'No ha ingresado a ninguna opción'
+    #     except Exception as e:
+    #         data['error'] = str(e)
+    #     return JsonResponse(data)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -69,4 +69,65 @@ class RequisitoCreateView(CreateView):
         context['entity'] = 'Requisito'
         context['list_url'] = reverse_lazy('erp:requisito_list')
         context['action'] = 'add'
+        return context
+    
+class RequisitoUpdateView(UpdateView):
+    model = Requisito
+    form_class = RequisitoForm
+    template_name = 'requisito/create.html'
+    success_url = reverse_lazy('erp:requisito_list')
+    # permission_required = 'change_requisito'
+    url_redirect = success_url
+
+    def dispatch(self, request, *args, **kwargs):
+        # self.object = self.get_object()
+        return super().dispatch(request, *args, **kwargs)
+
+    # def post(self, request, *args, **kwargs):
+    #     data = {}
+    #     try:
+    #         action = request.POST['action']
+    #         if action == 'edit':
+    #             form = self.get_form()
+    #             data = form.save()
+    #         else:
+    #             data['error'] = 'No ha ingresado a ninguna opción'
+    #     except Exception as e:
+    #         data['error'] = str(e)
+    #     return JsonResponse(data)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Edición de un Requisito'
+        context['entity'] = 'Requisitos'
+        context['list_url'] = self.success_url
+        context['action'] = 'edit'
+        return context
+
+
+class RequisitoDeleteView(DeleteView):
+    model = Requisito
+    template_name = 'requisito/delete.html'
+    success_url = reverse_lazy('erp:requisito_list')
+    permission_required = 'delete_requisito'
+    url_redirect = success_url
+
+    # @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        return super().dispatch(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        data = {}
+        try:
+            self.object.delete()
+        except Exception as e:
+            data['error'] = str(e)
+        return JsonResponse(data)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Eliminación de un Requisito'
+        context['entity'] = 'Requisitos'
+        context['list_url'] = self.success_url
         return context
